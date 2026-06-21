@@ -13,7 +13,7 @@ function LogWorkout() {
   const fetchWorkouts = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/workouts"
+   "https://gym-consistency-predictor-2.onrender.com/workouts"
       );
 
       setWorkouts(res.data);
@@ -36,9 +36,9 @@ function LogWorkout() {
       };
 
       await axios.post(
-        "http://localhost:5000/workouts",
-        newWorkout
-      );
+  "https://gym-consistency-predictor-2.onrender.com/workouts",
+  newWorkout
+);
 
       fetchWorkouts();
 
@@ -53,8 +53,8 @@ function LogWorkout() {
   const deleteWorkout = async (id) => {
   try {
     await axios.delete(
-      `http://localhost:5000/workouts/${id}`
-    );
+  `https://gym-consistency-predictor-2.onrender.com/workouts/${id}`
+);
 
     fetchWorkouts();
   } catch (error) {
