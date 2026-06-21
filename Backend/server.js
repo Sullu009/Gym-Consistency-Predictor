@@ -11,6 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+console.log("MONGO_URI =", process.env.MONGO_URI);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -19,6 +22,7 @@ mongoose
   .catch((err) => {
     console.log("MongoDB Error:", err);
   });
+
 
 app.get("/", (req, res) => {
   res.send("SULTAN BACKEND 2026");
@@ -73,7 +77,7 @@ app.delete("/workouts/:id", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
