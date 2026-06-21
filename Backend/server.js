@@ -28,6 +28,13 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   res.send("TEST ROUTE WORKING");
 });
+   
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    message: "Backend Healthy",
+  });
+});
 
 app.post("/workouts", async (req, res) => {
   try {
@@ -47,6 +54,19 @@ app.get("/workouts", async (req, res) => {
   try {
     const workouts = await Workout.find();
     res.json(workouts);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
+app.delete("/workouts/:id", async (req, res) => {
+  try {
+    await Workout.findByIdAndDelete(req.params.id);
+
+    res.json({
+      message: "Workout Deleted Successfully",
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message,
